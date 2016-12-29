@@ -15,6 +15,7 @@ class KijijiSpider(scrapy.Spider):
 		      'http://www.kijiji.ca/b-programmer-computer-jobs/kamloops/c54l1700227',
 		      'http://www.kijiji.ca/b-programmer-computer-jobs/vernon/c54l1700229',
 		      'http://www.kijiji.ca/b-programmer-computer-jobs/gta-greater-toronto-area/c54l1700272']
+	# todo: add additional places
 
 	def parse(self, response):
 		for href in response.css('.description a::attr(href)'):
