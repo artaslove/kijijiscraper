@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import scrapy
 import json
 import re
