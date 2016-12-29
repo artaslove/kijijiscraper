@@ -1,2 +1,2 @@
 #!/bin/bash
-scrapy runspider kijijispider.py -t json --nolog -o - > kajiji.json
+scrapy runspider kijijispider.py -t json --nolog -o - > kijiji.json
