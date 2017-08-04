@@ -1,22 +1,17 @@
 import scrapy
-import json
 import re
 from scrapy.selector import Selector
-from scrapy.http import FormRequest
-from datetime import datetime
 
 class KijijiSpider(scrapy.Spider):
 	name = 'KijijiSpider'
 	start_urls = ['http://www.kijiji.ca/b-programmer-computer-jobs/british-columbia/c54l9007']
 
 	def parse(self, response):
-		for href in response.css('.description a::attr(href)'):
-			site = href.extract()
-			# Ignoring the indeed.com matches for now
-			if site[:1] == '/':
-				yield scrapy.Request(response.urljoin(site), callback=self.parse_job)
-		# next page
 		hxs = Selector(response)
+		for href in hxs.xpath('//td[@class="description"]/a/@href').extract():
+			# Ignoring the indeed.com matches for now - TODO - parse the indeed site as well 
+			if href[:1] == '/':
+				yield scrapy.Request(response.urljoin(href), callback=self.parse_job)
 		next = hxs.xpath('//div[@class="pagination"]/a[@title="Next"]/@href').extract_first()
 		if next is not None:
 			yield scrapy.Request(response.urljoin(next), callback=self.parse)
