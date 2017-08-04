@@ -9,7 +9,7 @@ class KijijiSpider(scrapy.Spider):
 	def parse(self, response):
 		hxs = Selector(response)
 		for href in hxs.xpath('//td[@class="description"]/a/@href').extract():
-			# Ignoring the indeed.com matches for now - TODO - parse the indeed site as well 
+			# Ignoring links to other partner sites for sake of simplicity
 			if href[:1] == '/':
 				yield scrapy.Request(response.urljoin(href), callback=self.parse_job)
 		next = hxs.xpath('//div[@class="pagination"]/a[@title="Next"]/@href').extract_first()
