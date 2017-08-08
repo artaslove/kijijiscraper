@@ -5,7 +5,8 @@ from scrapy.selector import Selector
 class KijijiSpider(scrapy.Spider):
 	name = 'KijijiSpider'
 	start_urls = ['http://www.kijiji.ca/b-programmer-computer-jobs/british-columbia/c54l9007']
-
+	custom_settings = {"USER_AGENT" : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'}
+	
 	def parse(self, response):
 		hxs = Selector(response)
 		for href in hxs.xpath('//td[@class="description"]/a/@href').extract():
