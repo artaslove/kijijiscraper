@@ -7,7 +7,8 @@ class KijijispiderSpider(scrapy.Spider):
     	name = "kijijispider"
     	allowed_domains = ["kijiji.ca"]
     	start_urls = ['http://www.kijiji.ca/b-programmer-computer-jobs/british-columbia/c54l9007',
-		      'https://www.kijiji.ca/b-programmer-computer-jobs/ontario/c54l9004']
+		      'https://www.kijiji.ca/b-programmer-computer-jobs/ontario/c54l9004',
+		      'https://www.kijiji.ca/b-programmer-computer-jobs/nova-scotia/c54l9002']
 
 	def parse(self, response):
 		hxs = Selector(response)
